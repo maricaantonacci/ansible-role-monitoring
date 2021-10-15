@@ -50,7 +50,7 @@
     key_value: "yes"
     grafana_service: |
       grafana:
-          build: grafana/Dockerfile
+          build: grafana/
           container_name: monitoring_grafana
           depends_on:
             - prometheus
