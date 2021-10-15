@@ -1,4 +1,5 @@
 ---
 # vars file for dodas-ts-monitoring
 nvidia_monitoring: ""
+nvidia_depends: ""
 prometheus_nvidia: ""

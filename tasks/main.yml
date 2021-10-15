@@ -1,31 +1,26 @@
 ---
-# ---------- get docker-compose version ----------
 - name: get docker-compose version
   shell: docker-compose -v
   register: docker_compose_version
 
-# ---------- check docker-compose ----------
 - name: check docker-compose
   fail:
     msg: "Docker compose is required"
   when: docker_compose_version.stdout.find("docker-compose version") == -1
 
-# ---------- Setup Monitoring [prometheus] ----------
 - name: Setup Monitoring [prometheus]
-  include_tasks: monitoring-prometheus.yml
-# # ---------- Setup Monitoring [grafana] ----------
-# - name: Setup Monitoring [grafana]
-#   include_tasks: monitoring-grafana.yml
-#   when: (grafana | bool)
+  include_tasks: prometheus.yml
 
-# # ---------- Create monitoring compose ----------
-# - name: Create monitoring compose
-#   template:
-#     src: monitoring-compose.j2
-#     dest: /usr/local/share/dodasts/monitoring/docker-compose-monitoring.yml
+- name: Setup Monitoring [grafana]
+  include_tasks: grafana.yml
+  when: (grafana | bool)
 
-# # ---------- Run monitoring ----------
-# - name: Run monitoring
-#   shell:
-#     cmd: docker-compose -f docker-compose-monitoring.yml up -d
-#     chdir: /usr/local/share/dodasts/monitoring
+- name: Create monitoring compose
+  template:
+    src: monitoring-compose.j2
+    dest: /usr/local/share/dodasts/monitoring/docker-compose-monitoring.yml
+
+- name: Run monitoring
+  shell:
+    cmd: docker-compose -f docker-compose-monitoring.yml up -d
+    chdir: /usr/local/share/dodasts/monitoring
