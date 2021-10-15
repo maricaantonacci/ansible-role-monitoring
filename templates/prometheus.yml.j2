@@ -8,7 +8,7 @@ global:
   # Attach these labels to any time series or alerts when communicating with
   # external systems (federation, remote storage, Alertmanager).
   external_labels:
-      monitor: {{ project_name }}
+      monitor: {{ monitoring_project_name }}
 
 # Load and evaluate rules in this file every 'evaluation_interval' seconds.
 rule_files:
