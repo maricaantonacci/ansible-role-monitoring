@@ -1,2 +1,4 @@
 ---
 # vars file for dodas-ts-monitoring
+nvidia_monitoring: ""
+prometheus_nvidia: ""
