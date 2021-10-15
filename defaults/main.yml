@@ -1,2 +1,5 @@
 ---
 # defaults file for dodas-ts-monitoring
+project_name: my-project
+
+use_gpu: false
