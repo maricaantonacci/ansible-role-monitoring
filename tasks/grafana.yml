@@ -43,7 +43,7 @@
     cmd: |
       chmod +x /usr/local/share/dodasts/monitoring/grafana/utils/get_client \
       && /usr/local/share/dodasts/monitoring/grafana/utils/get_client {{ monitoring_iam_url }} {{ monitoring_server_ip }} {{ service_grafana_port }}
-  when: grafana_client_id == "CLIENT_ID" and grafana_client_secret == "CLIENT_SECRET"
+  when: service_grafana_client_id == "CLIENT_ID" and service_grafana_client_secret == "CLIENT_SECRET"
 
 - name: prepare variables for monitoring
   set_fact:
