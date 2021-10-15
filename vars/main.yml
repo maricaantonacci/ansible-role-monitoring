@@ -3,3 +3,4 @@
 nvidia_monitoring: ""
 nvidia_depends: ""
 prometheus_nvidia: ""
+grafana_service: ""
