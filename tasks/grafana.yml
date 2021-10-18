@@ -17,6 +17,11 @@
     dest: /usr/local/share/dodasts/monitoring
     directory_mode: 0755
 
+- name: Add execution permission to get_client
+  file:
+    path: /usr/local/share/dodasts/monitoring/grafana/utils/get_client
+    mode: u+rwx
+
 - name: download dodas-IAMClientRec
   git:
     repo: "https://github.com/DODAS-TS/dodas-IAMClientRec.git"
@@ -41,8 +46,7 @@
 - name: get client id and secret
   shell:
     cmd: |
-      chmod +x /usr/local/share/dodasts/monitoring/grafana/utils/get_client \
-      && /usr/local/share/dodasts/monitoring/grafana/utils/get_client {{ monitoring_iam_url }} {{ monitoring_server_ip }} {{ service_grafana_port }}
+      /usr/local/share/dodasts/monitoring/grafana/utils/get_client {{ monitoring_iam_url }} {{ monitoring_server_ip }} {{ service_grafana_port }}
   when: service_grafana_client_id == "CLIENT_ID" and service_grafana_client_secret == "CLIENT_SECRET"
 
 - name: prepare variables for monitoring
