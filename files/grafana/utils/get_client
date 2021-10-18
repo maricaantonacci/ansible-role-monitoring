@@ -7,8 +7,11 @@ def main():
     client = subprocess.check_output(
         f"IAM_INSTANCE={argv[1]} OAUTH_CALLBACK=https://{argv[2]}:{argv[3]}/login/generic_oauth dodas-IAMClientRec ml-client",
         shell=True,
+        encoding="utf-8",
     )
-    lines = [line for line in client.decode("utf-8").split("\n") if line]
+    lines = [line for line in client.split("\n") if line]
+    # Remove ASCII escape chars
+    lines = [line.replace("\x1b[0m", "").replace("\x1b[32m", "") for line in lines]
 
     with open(
         "/usr/local/share/dodasts/monitoring/grafana/config/custom.ini"
