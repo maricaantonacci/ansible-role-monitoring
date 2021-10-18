@@ -50,7 +50,7 @@
     key_value: "yes"
     grafana_service: |
       grafana:
-          build: grafana/
+          image: dodasts/monitoring-grafana:latest
           container_name: monitoring_grafana
           depends_on:
             - prometheus
