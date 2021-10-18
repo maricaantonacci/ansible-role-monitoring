@@ -19,5 +19,6 @@ cookie_secure=true
 [server]
 domain = {{ monitoring_server_ip }}
 protocol = "https"
+http_port = {{ service_grafana_port }}
 cert_file = /usr/local/share/dodasts/certs/grafana/hostcert.pem
 cert_key = /usr/local/share/dodasts/certs/grafana/hostcert.key
