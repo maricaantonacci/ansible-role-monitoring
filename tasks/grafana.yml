@@ -63,7 +63,7 @@
             - "-config"
             - "/opt/grafana/custom.ini"
           ports:
-            - {{ service_grafana_port }}:3000
+            - {{ service_grafana_port }}:{{ service_grafana_port }}
           volumes:
             - /usr/local/share/dodasts/certs/grafana:/usr/local/share/dodasts/certs/grafana
             - /usr/local/share/dodasts/monitoring/grafana/config:/opt/grafana/
