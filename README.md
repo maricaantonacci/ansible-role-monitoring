@@ -5,26 +5,60 @@ A role to setup a custom monitoring on a node
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+This role requires [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) to be installed. Also, Grafana tasks requires [Go](https://golang.org/).
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+### defaults
+
+Variable for the monitoring service:
+
+- monitoring_project_name: string with the name of the current project (user's choice)
+- monitoring_use_gpu: bool, if the GPU is used and then monitored (default: false)
+- monitoring_iam_url: URL of the IAM service
+- monitoring_iam_groups: string with the name of the IAM groups allowed (space separated)
+- monitoring_iam_admin_groups: string with the name of the IAM groups that will be admin (space separated)
+- monitoring_server_ip: string with the ip of the current server
+
+Specific service variables:
+
+- service_grafana: "yes" if you want to setup also grafana
+- service_grafana_port: int, the grafana service port
+- service_grafana_admin_user: string
+- service_grafana_admin_password: string
+- service_grafana_client_id: string (used for the IAM login)
+- service_grafana_client_secret: string (used for the IAM login)
+
+### vars
+
+The following string variables will be filled with the docker service information:
+
+- nvidia_monitoring: string, (default: "")
+- nvidia_depends: string, (default: "")
+- prometheus_nvidia: string, (default: "")
+- grafana_service: string, (default: "")
+- service_grafana_disable_admin_creation: bool (default: true)
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+There are no other dependencies.
 
 Example Playbook
 ----------------
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
+```yaml
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - role: dodas-ts-monitoring
+           monitoring_project_name: compute_server
+           service_grafana_admin_user: admin
+           service_grafana_admin_password: example_password
+
+```
 
 License
 -------
