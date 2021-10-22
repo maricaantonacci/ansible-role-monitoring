@@ -17,7 +17,7 @@
 
 - name: Create monitoring compose
   template:
-    src: monitoring-compose.j2
+    src: monitoring-compose.yml.j2
     dest: /usr/local/share/dodasts/monitoring/docker-compose.yml
 
 - name: Run monitoring
