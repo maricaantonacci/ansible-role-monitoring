@@ -49,6 +49,12 @@
       /usr/local/share/dodasts/monitoring/grafana/utils/get_client {{ monitoring_iam_url }} {{ monitoring_server_ip }} {{ service_grafana_port }}
   when: service_grafana_client_id == "CLIENT_ID" and service_grafana_client_secret == "CLIENT_SECRET"
 
+- name: let grafana to create admin
+  set_fact:
+    key_values: "yes"
+    service_grafana_disable_admin_creation: false
+  when: service_grafana_admin_user != "" and service_grafana_admin_password != ""
+
 - name: prepare variables for monitoring
   set_fact:
     key_value: "yes"
@@ -72,5 +78,5 @@
           environment:
             - GF_SECURITY_ADMIN_USER={{ service_grafana_admin_user }}
             - GF_SECURITY_ADMIN_PASSWORD={{ service_grafana_admin_password }}
-            - GF_SECURITY_DISABLE_INITIAL_ADMIN_CREATION=true
+            - GF_SECURITY_DISABLE_INITIAL_ADMIN_CREATION={{ service_grafana_disable_admin_creation }}
             - GF_USERS_ALLOW_SIGN_UP=false
