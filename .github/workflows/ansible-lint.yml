@@ -2,6 +2,7 @@ name: Ansible Lint # feel free to pick your own name
 
 on: [push, pull_request]
 
+# TODO: add https://github.com/marketplace/actions/ansible-molecule
 jobs:
   ansible-lint:
     runs-on: ubuntu-20.04
@@ -31,9 +32,10 @@ jobs:
           # [optional]
           # Arguments to override a package and its version to be set explicitly.
           # Must follow the example syntax.
-          override-deps: |
-            ansible==2.9
-            ansible-lint==4.2.0
+          # TODO: waiting for fix -> https://github.com/ansible/ansible-lint-action/issues/41
+          # override-deps: |
+          #   ansible==2.9
+          #   ansible-lint==4.2.0
           # [optional]
           # Arguments to be passed to the ansible-lint
 
