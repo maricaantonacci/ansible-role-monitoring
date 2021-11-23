@@ -60,7 +60,7 @@
     key_value: "yes"
     grafana_service: |
       grafana:
-          image: dodasts/monitoring-grafana:latest
+          image: dodasts/monitoring-grafana:v1.0.0-monitoring
           container_name: monitoring_grafana
           depends_on:
             - prometheus
