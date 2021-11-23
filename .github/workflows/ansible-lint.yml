@@ -25,7 +25,10 @@ jobs:
           # targets: |
           #   playbook_1.yml
           #   playbook_2.yml
-          targets: "**/*.yml"
+          targets: |
+            tasks/*.yml
+            defaults/*.yml
+            vars/*.yml
           # [optional]
           # Arguments to override a package and its version to be set explicitly.
           # Must follow the example syntax.
