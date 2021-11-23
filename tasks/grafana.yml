@@ -53,7 +53,7 @@
   set_fact:
     key_values: "yes"
     service_grafana_disable_admin_creation: false
-  when: service_grafana_admin_user != "" and service_grafana_admin_password != ""
+  when: (service_grafana_admin_user|length > 0) and (service_grafana_admin_password|length > 0)
 
 - name: prepare variables for monitoring
   set_fact:
