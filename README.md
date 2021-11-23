@@ -1,4 +1,4 @@
-# ansible-role-monitoring
+# ansible-role-monitoring [![Ansible Lint](https://github.com/DODAS-TS/ansible-role-monitoring/actions/workflows/ansible-lint.yml/badge.svg)](https://github.com/DODAS-TS/ansible-role-monitoring/actions/workflows/ansible-lint.yml)
 
 A role to setup a custom monitoring on a node
 
