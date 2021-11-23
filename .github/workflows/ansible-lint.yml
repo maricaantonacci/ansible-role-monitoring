@@ -15,7 +15,7 @@ jobs:
         # replace "master" with any valid ref
         # TODO: waiting for fix -> https://github.com/ansible/ansible-lint-action/issues/41
         # uses: ansible/ansible-lint-action@master
-        uses: DODAS-TS/ansible-lint-action@fix_ansible_version
+        uses: DODAS-TS/ansible-lint-action@ansible-2.9
         with:
           # [required]
           # Paths to ansible files (i.e., playbooks, tasks, handlers etc..)
